@@ -1,5 +1,5 @@
 class Solution {
-    private Map<Character, char[]> numbers = new HashMap<>();
+    private Map<Character, String> numbers = new HashMap<>();
     
     public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
@@ -18,7 +18,7 @@ class Solution {
             return;
         }
 
-        for(char c: numbers.get(digits.charAt(sb.length()))){
+        for(char c: numbers.get(digits.charAt(sb.length())).toCharArray()){
             sb.append(c);
             dfs(digits,sb,list);
             sb.deleteCharAt(sb.length()-1);
@@ -26,14 +26,14 @@ class Solution {
     }
 
     private void initPhoneNumber() {
-        numbers.put('2', new char[]{'a', 'b', 'c'});
-        numbers.put('3', new char[]{'d', 'e', 'f'});
-        numbers.put('4', new char[]{'g', 'h', 'i'});
-        numbers.put('5', new char[]{'j', 'k', 'l'});
-        numbers.put('6', new char[]{'m', 'n', 'o'});
-        numbers.put('7', new char[]{'p', 'q', 'r', 's'});
-        numbers.put('8', new char[]{'t', 'u', 'v'});
-        numbers.put('9', new char[]{'w', 'x', 'y', 'z'});
+        numbers.put('2', "abc");
+        numbers.put('3', "def");
+        numbers.put('4', "ghi");
+        numbers.put('5', "jkl");
+        numbers.put('6', "mno");
+        numbers.put('7', "pqrs");
+        numbers.put('8', "tuv");
+        numbers.put('9', "wxyz");
     }
 
 }
