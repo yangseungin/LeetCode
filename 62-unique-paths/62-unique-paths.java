@@ -1,18 +1,25 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int[][] dp = new int[m][n];
+        int[][] visited = new int[m][n];
 
-        for (int i = 0; i < dp.length; i++) {
-            dp[i][0] = 1;
+
+        return dfs(0, 0, m, n, visited);
+    }
+
+    private int dfs(int si, int sj, int ei, int ej, int[][] visited) {
+        if (si >= ei || sj >= ej) {
+            return 0;
         }
-        for (int i = 0; i < dp[0].length; i++) {
-            dp[0][i] = 1;
+        if (si == ei - 1 && sj == ej - 1) {
+            return visited[si][sj] + 1;
         }
-        for (int i = 1; i < dp.length; i++) {
-            for (int j = 1; j < dp[0].length; j++) {
-                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-            }
-        }
-        return dp[m - 1][n - 1];
+
+        if (visited[si][sj] != 0)
+            return visited[si][sj];
+
+        visited[si][sj] = dfs(si + 1, sj, ei, ej, visited) + dfs(si, sj + 1, ei, ej, visited);
+
+
+        return visited[si][sj];
     }
 }
